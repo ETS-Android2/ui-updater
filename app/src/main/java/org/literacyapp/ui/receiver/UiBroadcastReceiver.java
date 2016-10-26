@@ -1,4 +1,4 @@
-package org.literacyapp.ui;
+package org.literacyapp.ui.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,7 +31,7 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
         Log.i(getClass().getName(), "onReceive");
 
         // Customize the user interface to match the current Student's level
-        // TODO: fetch Student level (from Intent?)
+        // TODO: fetch Student details (from Intent?)
 
 
 
@@ -115,7 +115,7 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
         // Activate "Show touches" in Developer options
         // TODO: revert this setting before submitting to XPRIZE
 //        Settings.System.putInt(context.getContentResolver(), "show_touches", 1);
-        // java.lang.RuntimeException: Unable to start receiver org.literacyapp.ui.UiBroadcastReceiver: java.lang.IllegalArgumentException: You cannot change private secure settings.
+        // java.lang.RuntimeException: Unable to start receiver org.literacyapp.ui.receiver.UiBroadcastReceiver: java.lang.IllegalArgumentException: You cannot change private secure settings.
         // See https://code.google.com/p/android/issues/detail?id=194376&can=4&colspec=ID%20Status%20Priority%20Owner%20Summary%20Stars%20Reporter%20Opened
 
 
