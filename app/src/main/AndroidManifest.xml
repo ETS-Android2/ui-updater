@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.literacyapp.ui">
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- Needed on Amazon Fire (API 22) -->
     <uses-permission
