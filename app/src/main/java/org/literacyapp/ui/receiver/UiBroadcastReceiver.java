@@ -292,6 +292,49 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
 
 
 
+        // The following is based on the document "Disable Unnecessary Apps"
+        try {
+            runAsRoot(new String[]{
+                    "pm disable com.android.browser",
+                    "pm disable org.cyanogenmod.gello.browser",
+                    "pm disable com.android.calendar",
+                    "pm disable com.android.calculator2",
+                    "pm disable com.android.contacts",
+                    "pm disable com.android.providers.downloads.ui",
+                    "pm disable com.android.email",
+                    "pm disable com.cyanogenmod.filemanager",
+                    "pm disable org.cyanogenmod.screencast",
+
+                    "am force-stop com.android.providers.telephony",
+
+                    "am force-stop com.android.smspush",
+                    "pm disable com.android.smspush",
+
+                    "am force-stop com.android.exchange",
+                    "pm disable com.android.exchange",
+
+                    "am force-stop com.android.server.telecom",
+
+                    "am force-stop com.android.dragonkeyboard",
+
+                    "am force-stop com.android.printspooler",
+                    "pm disable com.android.printspooler",
+
+                    "am force-stop org.cyanogenmod.setupwizard",
+
+                    "am force-stop com.android.providers.userdictionary",
+                    "pm disable com.android.providers.userdictionary",
+
+                    "am force-stop com.android.vpndialogs",
+
+                    "am force-stop org.cyanogenmod.weather.provider",
+            });
+        } catch (IOException | InterruptedException e) {
+            Log.e(getClass().getName(), null, e);
+        }
+
+
+
         // Install custom boot animation
         String zipFileName = "bootanimation_literacyapp.zip";
         File zipFile = new File(filesDirectory, zipFileName);
