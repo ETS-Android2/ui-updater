@@ -121,10 +121,14 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
 
         // Set volume level to 70%
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        audioManager.setStreamVolume(AudioManager.STREAM_ALARM, audioManager.getStreamMaxVolume(audioManager.STREAM_ALARM) / 3, 0);
-        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamMaxVolume(audioManager.STREAM_MUSIC) / 7, 0);
-        audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, audioManager.getStreamMaxVolume(audioManager.STREAM_NOTIFICATION) / 3, 0);
-        audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, audioManager.getStreamMaxVolume(audioManager.STREAM_SYSTEM) / 7, 0);
+        Log.i(getClass().getName(), "audioManager.getStreamMaxVolume(audioManager.STREAM_ALARM): " + audioManager.getStreamMaxVolume(audioManager.STREAM_ALARM));
+        Log.i(getClass().getName(), "audioManager.getStreamMaxVolume(audioManager.STREAM_MUSIC): " + audioManager.getStreamMaxVolume(audioManager.STREAM_MUSIC));
+        Log.i(getClass().getName(), "audioManager.getStreamMaxVolume(audioManager.STREAM_NOTIFICATION): " + audioManager.getStreamMaxVolume(audioManager.STREAM_NOTIFICATION));
+        Log.i(getClass().getName(), "audioManager.getStreamMaxVolume(audioManager.STREAM_SYSTEM): " + audioManager.getStreamMaxVolume(audioManager.STREAM_SYSTEM));
+        audioManager.setStreamVolume(AudioManager.STREAM_ALARM, audioManager.getStreamMaxVolume(audioManager.STREAM_ALARM) * 20/100, 0);
+        audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, audioManager.getStreamMaxVolume(audioManager.STREAM_MUSIC) * 80/100, 0);
+        audioManager.setStreamVolume(AudioManager.STREAM_NOTIFICATION, audioManager.getStreamMaxVolume(audioManager.STREAM_NOTIFICATION) * 80/100, 0);
+        audioManager.setStreamVolume(AudioManager.STREAM_SYSTEM, audioManager.getStreamMaxVolume(audioManager.STREAM_SYSTEM) * 80/100, 0);
 
 
         // Install/adjust custom keyboard
