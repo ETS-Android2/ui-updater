@@ -298,11 +298,14 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
                     "pm disable com.android.browser",
                     "pm disable org.cyanogenmod.gello.browser",
                     "pm disable com.android.calendar",
+                    "pm disable com.android.providers.calendar",
                     "pm disable com.android.calculator2",
                     "pm disable com.android.contacts",
+                    "pm disable com.android.providers.downloads",
                     "pm disable com.android.providers.downloads.ui",
                     "pm disable com.android.email",
-                    "pm disable com.cyanogenmod.filemanager",
+                    "pm disable com.android.nfc",
+//                    "pm disable com.cyanogenmod.filemanager",
                     "pm disable org.cyanogenmod.screencast",
 
                     "am force-stop com.android.providers.telephony",
@@ -328,6 +331,10 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
                     "am force-stop com.android.vpndialogs",
 
                     "am force-stop org.cyanogenmod.weather.provider",
+                    "am force-stop org.cyanogenmod.weatherservice",
+                    "pm disable org.cyanogenmod.weatherservice",
+
+                    "am force-stop com.android.mms.service"
             });
         } catch (IOException | InterruptedException e) {
             Log.e(getClass().getName(), null, e);
