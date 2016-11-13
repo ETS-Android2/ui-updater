@@ -305,7 +305,6 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
                     "pm disable com.android.providers.downloads.ui",
                     "pm disable com.android.email",
                     "pm disable com.android.nfc",
-//                    "pm disable com.cyanogenmod.filemanager",
                     "pm disable org.cyanogenmod.screencast",
 
                     "am force-stop com.android.providers.telephony",
