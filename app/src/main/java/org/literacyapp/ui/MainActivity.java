@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         startService(serviceIntent);
 
         Intent intent = new Intent();
-        intent.setAction("literacyapp.intent.NEW_STUDENT");
+        intent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
         intent.setPackage("org.literacyapp.ui");
         sendBroadcast(intent);
 

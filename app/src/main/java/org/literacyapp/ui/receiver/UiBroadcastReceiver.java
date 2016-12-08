@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 public class UiBroadcastReceiver extends BroadcastReceiver {
 
@@ -31,8 +32,30 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
         Log.i(getClass().getName(), "onReceive");
 
         // Customize the user interface to match the current Student's level
-        // TODO: fetch Student details (from Intent?)
+        ArrayList<String> availableLetters = intent.getStringArrayListExtra("availableLetters");
+        Log.i(getClass().getName(), "availableLetters: " + availableLetters);
+        ArrayList<String> availableNumbers = intent.getStringArrayListExtra("availableNumbers");
+        Log.i(getClass().getName(), "availableNumbers: " + availableNumbers);
 
+        if (availableNumbers != null) {
+            // Update Calculator application
+            Intent updateCalculatorIntent = new Intent();
+            updateCalculatorIntent.setPackage("org.literacyapp.calculator");
+            updateCalculatorIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
+            updateCalculatorIntent.putStringArrayListExtra("availableNumbers", availableNumbers);
+            context.sendBroadcast(updateCalculatorIntent);
+        }
+
+        if (availableLetters != null) {
+            // Update Walezi application
+            Intent updateCalculatorIntent = new Intent();
+            updateCalculatorIntent.setPackage("org.literacyapp.walezi");
+            updateCalculatorIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
+            updateCalculatorIntent.putStringArrayListExtra("availableLetters", availableLetters);
+            context.sendBroadcast(updateCalculatorIntent);
+        }
+
+        // TODO: update Chat application
 
 
         // Obtain permission to change system settings
@@ -153,6 +176,20 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
             }
         } catch (PackageManager.NameNotFoundException e) {
             Log.w(getClass().getName(), "The application is not installed: org.literacyapp.keyboard", e);
+        }
+
+        if ((availableLetters != null) || (availableNumbers != null)) {
+            // Update Keyboard application
+            Intent updateCalculatorIntent = new Intent();
+            updateCalculatorIntent.setPackage("org.literacyapp.keyboard");
+            updateCalculatorIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
+            if (availableLetters != null) {
+                updateCalculatorIntent.putStringArrayListExtra("availableLetters", availableLetters);
+            }
+            if (availableNumbers != null) {
+                updateCalculatorIntent.putStringArrayListExtra("availableNumbers", availableNumbers);
+            }
+            context.sendBroadcast(updateCalculatorIntent);
         }
 
 
@@ -338,6 +375,8 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
         } catch (IOException | InterruptedException e) {
             Log.e(getClass().getName(), null, e);
         }
+
+        // TODO: disable/enable Applications
 
 
 
