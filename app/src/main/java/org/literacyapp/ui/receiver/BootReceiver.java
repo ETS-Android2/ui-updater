@@ -15,5 +15,10 @@ public class BootReceiver extends BroadcastReceiver {
 
         Intent serviceIntent = new Intent(context, StatusBarService.class);
         context.startService(serviceIntent);
+
+        Intent studentUpdatedIntent = new Intent();
+        studentUpdatedIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
+        studentUpdatedIntent.setPackage("org.literacyapp.ui");
+        context.sendBroadcast(studentUpdatedIntent);
     }
 }
