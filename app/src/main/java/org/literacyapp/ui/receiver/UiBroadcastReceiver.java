@@ -36,6 +36,10 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
         Log.i(getClass().getName(), "availableLetters: " + availableLetters);
         ArrayList<String> availableNumbers = intent.getStringArrayListExtra("availableNumbers");
         Log.i(getClass().getName(), "availableNumbers: " + availableNumbers);
+        ArrayList<String> availableLiteracySkills = intent.getStringArrayListExtra("availableLiteracySkills");
+        Log.i(getClass().getName(), "availableLiteracySkills: " + availableLiteracySkills);
+        ArrayList<String> availableNumeracySkills = intent.getStringArrayListExtra("availableNumeracySkills");
+        Log.i(getClass().getName(), "availableNumeracySkills: " + availableNumeracySkills);
 
         if (availableNumbers != null) {
             // Update Calculator application
@@ -376,7 +380,19 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
             Log.e(getClass().getName(), null, e);
         }
 
-        // TODO: disable/enable Applications
+        if ((availableLiteracySkills != null) || (availableNumeracySkills != null)) {
+            // Update Appstore application
+            Intent updateAppstoreIntent = new Intent();
+            updateAppstoreIntent.setPackage("org.literacyapp.appstore");
+            updateAppstoreIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
+            if (availableLiteracySkills != null) {
+                updateAppstoreIntent.putStringArrayListExtra("availableLiteracySkills", availableLiteracySkills);
+            }
+            if (availableNumeracySkills != null) {
+                updateAppstoreIntent.putStringArrayListExtra("availableNumeracySkills", availableNumeracySkills);
+            }
+            context.sendBroadcast(updateAppstoreIntent);
+        }
 
 
 
