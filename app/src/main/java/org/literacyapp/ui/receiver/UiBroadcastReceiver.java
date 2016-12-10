@@ -47,6 +47,7 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
             updateCalculatorIntent.setPackage("org.literacyapp.calculator");
             updateCalculatorIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
             updateCalculatorIntent.putStringArrayListExtra("availableNumbers", availableNumbers);
+            Log.i(getClass().getName(), "Sending broadcast to " + updateCalculatorIntent.getPackage());
             context.sendBroadcast(updateCalculatorIntent);
         }
 
@@ -56,6 +57,7 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
             updateCalculatorIntent.setPackage("org.literacyapp.walezi");
             updateCalculatorIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
             updateCalculatorIntent.putStringArrayListExtra("availableLetters", availableLetters);
+            Log.i(getClass().getName(), "Sending broadcast to " + updateCalculatorIntent.getPackage());
             context.sendBroadcast(updateCalculatorIntent);
         }
 
@@ -193,6 +195,7 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
             if (availableNumbers != null) {
                 updateCalculatorIntent.putStringArrayListExtra("availableNumbers", availableNumbers);
             }
+            Log.i(getClass().getName(), "Sending broadcast to " + updateCalculatorIntent.getPackage());
             context.sendBroadcast(updateCalculatorIntent);
         }
 
@@ -391,6 +394,7 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
             if (availableNumeracySkills != null) {
                 updateAppstoreIntent.putStringArrayListExtra("availableNumeracySkills", availableNumeracySkills);
             }
+            Log.i(getClass().getName(), "Sending broadcast to " + updateAppstoreIntent.getPackage());
             context.sendBroadcast(updateAppstoreIntent);
         }
 
