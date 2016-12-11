@@ -25,21 +25,31 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class UiBroadcastReceiver extends BroadcastReceiver {
+public class StudentUpdateReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.i(getClass().getName(), "onReceive");
 
         // Customize the user interface to match the current Student's level
+
         ArrayList<String> availableLetters = intent.getStringArrayListExtra("availableLetters");
         Log.i(getClass().getName(), "availableLetters: " + availableLetters);
+
         ArrayList<String> availableNumbers = intent.getStringArrayListExtra("availableNumbers");
         Log.i(getClass().getName(), "availableNumbers: " + availableNumbers);
+
         ArrayList<String> availableLiteracySkills = intent.getStringArrayListExtra("availableLiteracySkills");
         Log.i(getClass().getName(), "availableLiteracySkills: " + availableLiteracySkills);
+
         ArrayList<String> availableNumeracySkills = intent.getStringArrayListExtra("availableNumeracySkills");
         Log.i(getClass().getName(), "availableNumeracySkills: " + availableNumeracySkills);
+
+        String studentId = intent.getStringExtra("studentId");
+        Log.i(getClass().getName(), "studentId: " + studentId);
+
+        String studentAvatar = intent.getStringExtra("studentAvatar");
+        Log.i(getClass().getName(), "studentAvatar: " + studentAvatar);
 
         if (availableNumbers != null) {
             // Update Calculator application
@@ -61,7 +71,20 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
             context.sendBroadcast(updateCalculatorIntent);
         }
 
-        // TODO: update Chat application
+        if (!TextUtils.isEmpty(studentId) || !TextUtils.isEmpty(studentAvatar)) {
+            // Update Chat application
+            Intent updateChatIntent = new Intent();
+            updateChatIntent.setPackage("org.literacyapp.chat");
+            updateChatIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
+            if (!TextUtils.isEmpty(studentId)) {
+                updateChatIntent.putExtra("studentId", studentId);
+            }
+            if (!TextUtils.isEmpty(studentAvatar)) {
+                updateChatIntent.putExtra("studentAvatar", studentAvatar);
+            }
+            Log.i(getClass().getName(), "Sending broadcast to " + updateChatIntent.getPackage());
+            context.sendBroadcast(updateChatIntent);
+        }
 
 
         // Obtain permission to change system settings
@@ -144,7 +167,7 @@ public class UiBroadcastReceiver extends BroadcastReceiver {
         // Activate "Show touches" in Developer options
         // TODO: revert this setting before submitting to XPRIZE
 //        Settings.System.putInt(context.getContentResolver(), "show_touches", 1);
-        // java.lang.RuntimeException: Unable to start receiver org.literacyapp.ui.receiver.UiBroadcastReceiver: java.lang.IllegalArgumentException: You cannot change private secure settings.
+        // java.lang.RuntimeException: Unable to start receiver org.literacyapp.ui.receiver.StudentUpdateReceiver: java.lang.IllegalArgumentException: You cannot change private secure settings.
         // See https://code.google.com/p/android/issues/detail?id=194376&can=4&colspec=ID%20Status%20Priority%20Owner%20Summary%20Stars%20Reporter%20Opened
 
 

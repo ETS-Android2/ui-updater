@@ -29,7 +29,7 @@
         </activity>
 
         <receiver
-            android:name=".receiver.UiBroadcastReceiver"
+            android:name=".receiver.StudentUpdateReceiver"
             android:enabled="true"
             android:exported="true">
 
