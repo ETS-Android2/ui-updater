@@ -71,6 +71,18 @@ public class StudentUpdateReceiver extends BroadcastReceiver {
             context.sendBroadcast(updateCalculatorIntent);
         }
 
+        if (!TextUtils.isEmpty(studentId)) {
+            // Update Analytics application
+            Intent updateAnalyticsIntent = new Intent();
+            updateAnalyticsIntent.setPackage("org.literacyapp.analytics");
+            updateAnalyticsIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
+            if (!TextUtils.isEmpty(studentId)) {
+                updateAnalyticsIntent.putExtra("studentId", studentId);
+            }
+            Log.i(getClass().getName(), "Sending broadcast to " + updateAnalyticsIntent.getPackage());
+            context.sendBroadcast(updateAnalyticsIntent);
+        }
+
         if (!TextUtils.isEmpty(studentId) || !TextUtils.isEmpty(studentAvatar)) {
             // Update Chat application
             Intent updateChatIntent = new Intent();
