@@ -246,7 +246,7 @@ public class StudentUpdateReceiver extends BroadcastReceiver {
         if (!fontsDirectory.exists()) {
             fontsDirectory.mkdir();
         }
-        String fontFileName = "AndikaLowerCase-Regular.ttf";
+        String fontFileName = "AndikaLowerCase-Regular_5dp.ttf";
         File fontFile = new File(fontsDirectory, fontFileName);
         Log.i(getClass().getName(), "fontFile.getAbsolutePath(): " + fontFile.getAbsolutePath());
         Log.i(getClass().getName(), "fontFile.exists(): " + fontFile.exists());
