@@ -51,12 +51,17 @@ public class StudentUpdateReceiver extends BroadcastReceiver {
         String studentAvatar = intent.getStringExtra("studentAvatar");
         Log.i(getClass().getName(), "studentAvatar: " + studentAvatar);
 
-        if (availableNumbers != null) {
+        if ((availableNumbers != null) || (availableNumeracySkills != null)) {
             // Update Calculator application
             Intent updateCalculatorIntent = new Intent();
             updateCalculatorIntent.setPackage("org.literacyapp.calculator");
             updateCalculatorIntent.setAction("literacyapp.intent.action.STUDENT_UPDATED");
-            updateCalculatorIntent.putStringArrayListExtra("availableNumbers", availableNumbers);
+            if (availableNumbers != null) {
+                updateCalculatorIntent.putStringArrayListExtra("availableNumbers", availableNumbers);
+            }
+            if (availableNumeracySkills != null) {
+                updateCalculatorIntent.putStringArrayListExtra("availableNumeracySkills", availableNumeracySkills);
+            }
             Log.i(getClass().getName(), "Sending broadcast to " + updateCalculatorIntent.getPackage());
             context.sendBroadcast(updateCalculatorIntent);
         }
