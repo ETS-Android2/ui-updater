@@ -8,9 +8,9 @@ android {
         applicationId "org.literacyapp.ui"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 1001007
-        versionName "1.1.7"
-        setProperty("archivesBaseName", "$applicationId-$versionName")
+        versionCode 1001008
+        versionName "1.1.8-SNAPSHOT"
+        setProperty("archivesBaseName", "$applicationId-$versionCode")
     }
 
     buildTypes {
